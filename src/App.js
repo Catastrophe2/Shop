@@ -1,37 +1,48 @@
-import './App.css';
-import Products from './components/Products/Products.js'
-import Header from './components/Header/Header.js'
-import { useEffect , useState } from 'react';
+import "./App.css";
+import Products from "./components/Products/Products.js";
+import Header from "./components/Header/Header.js";
+import { useEffect, useState } from "react";
+import Range from "./components/Range/Range";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Homep from "./pages/Homep";
+import About1 from "./pages/About1";
+import Details from "./pages/Details";
+
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("all");
-  const [keep, setKeep] = useState([])
-  useEffect(()=>{
-    fetch("https://fakestoreapi.com/products")
-    .then((response) => response.json())
-    .then((data) => {setProducts(data)});
-  },[])
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
 
-  const groupBy = (xs, key) => xs.reduce((rv, x) => {
-    (rv[x[key]] = true || []);
-    return rv;
-  }, {});
 
-const categories = Object.keys(groupBy(products, 'category'));
-
-  const setCat = (current) => {
-    setCategory(current);
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path = "/Details" ><Details/> </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+  function Home() {
+    return <Homep></Homep>;
   }
 
-  return(
-    <div>
-      <Header categories = {categories} setCat = {setCat} />
-      <div className = "products"><Products products = {products} category = {category}/></div>
-    </div>
-  )
 
-}
 
+};
 
 export default App;

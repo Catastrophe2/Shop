@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect , useState } from 'react';
+import Range from "../Range/Range";
+
 
 const Header = (props) => {
     return(
   <nav className="product-filter">
     <h1>Jackets</h1>
-
     <div className="sort">
       <div className="collection-sort">
         <label>Filter by:</label>
@@ -16,7 +17,7 @@ const Header = (props) => {
         >
           <option value="all">all</option>
           {props.categories.map((categories) => (
-            <option>{categories}</option>
+            <option id = {categories}>{categories}</option>
           ))}
         </select>
       </div>
