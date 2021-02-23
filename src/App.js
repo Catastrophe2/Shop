@@ -27,12 +27,12 @@ const App = () => {
 
         <Switch>
           <Route path="/about">
-            <About />
+            <About1 />
           </Route>
           <Route path="/">
             <Home />
           </Route>
-          <Route path = "/Details" ><Details/> </Route>
+          <Route path = "/Details" component= {Details}> </Route>
         </Switch>
       </div>
     </Router>
